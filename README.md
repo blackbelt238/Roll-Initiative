@@ -1,2 +1,2 @@
 # Roll-Initiative
-A tool to easily manage D&amp;D combat
+The initiative roller is a tool created to aid DMs in keeping track of combat.
