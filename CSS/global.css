@@ -1,0 +1,8 @@
+body {
+  max-width: 1000px;
+  margin: auto;
+}
+
+table.table {
+  margin-top: 1em;
+}
