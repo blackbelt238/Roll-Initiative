@@ -1,14 +1,20 @@
 var table = [];
 var pageTableBody = document.getElementById("initiative").children[1];
 
-var c1 = new Character("Raja the Red", 4);
+var c1 = new Character("Raja the Red", 4, true);
 table.push(c1);
 
-var c2 = new Character("Tryst", 3);
+var c2 = new Character("Tryst", 3, true);
 table.push(c2);
 
-var c3 = new Character("Galanthus Titarius", -1);
+var c3 = new Character("Galanthus Titarius", -1, false);
 table.push(c3);
+
+var c4 = new Character("Crakule", 2, true);
+table.push(c4);
+
+var c5 = new Character("Solomon", 6, false);
+table.push(c5);
 
 // given a Character object, add it to table#initiative
 function addCharacterToTable(character) {
@@ -33,20 +39,37 @@ function addCharacterToTable(character) {
   pageTableBody.appendChild(newRow);
 }
 
+// wipe all rows from the table
+function clearTable() {
+  while (pageTableBody.firstChild) {
+    pageTableBody.removeChild(pageTableBody.firstChild);
+  }
+}
+
 // adds all characters to table#initiative as rows
 function populateTable() {
+  clearTable();
   for (var i = 0; i < table.length; i++) {
     addCharacterToTable(table[i]);
   }
 }
 
+// remove all non-player characters from the table
+function removeNPCs() {
+  var players = [];
+  for (var i = 0; i < table.length; i++) {
+    var character = table[i];
+    if (character.isPlayer) {
+      players.push(character);
+    }
+  }
+  table = players;
+
+  populateTable();
+}
+
 // rolls initiative for all characters in table#initiative
 function rollForCharacters() {
-  // wipe all rows from the table
-  while (pageTableBody.firstChild) {
-    pageTableBody.removeChild(pageTableBody.firstChild);
-  }
-
   // roll initiative for each character in the table
   for (var i = 0; i < table.length; i++) {
     table[i].rollInitiative();
