@@ -19,12 +19,13 @@
     <a class="navbar-brand" href="#">Roll Initiative</a>
 
     <form class="ml-auto">
-      <button class="btn btn-sm btn-secondary" type="button">Reset</button>
+      <button class="btn btn-sm btn-info" type="button" onclick="rollForCharacters()">Roll</button>
+      <button class="btn btn-sm btn-danger" type="button">Reset</button>
     </form>
   </nav>
 
   <div id="table-container" class="container-fluid">
-    <table class="table table-bordered table-striped">
+    <table id="initiative" class="table table-bordered table-striped">
       <thead>
         <tr>
           <th style="width:16.66%" scope="col">Initiative</th>
@@ -33,23 +34,7 @@
         </tr>
       </thead>
 
-      <tbody>
-        <tr>
-          <th scope="row">15</th>
-          <td>Adran</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <th scope="row">8</th>
-          <td>Jacob</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Galanthus Titarius</td>
-          <td>-1</td>
-        </tr>
-      </tbody>
+      <tbody></tbody>
     </table>
   </div>
 
@@ -57,5 +42,14 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <!-- Roll Initiative JS -->
+  <script src="./JS/die.js"></script>
+  <script src="./JS/character.js"></script>
+  <script src="./JS/global.js"></script>
+
+  <script>
+    populateTable();
+  </script>
 </body>
 </html>
