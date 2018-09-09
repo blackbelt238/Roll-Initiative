@@ -1,5 +1,6 @@
-function Character(name, dexMod) {
+function Character(name, dexMod, isPlayer) {
   this.name = name;
+  this.isPlayer = isPlayer;
   this.dexMod = dexMod;
   this.initiative = 0;
 
