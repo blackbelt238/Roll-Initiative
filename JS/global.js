@@ -28,11 +28,16 @@ function addCharacterToTable(character) {
   // create the name column
   var nameCol = document.createElement("td");
   nameCol.appendChild(document.createTextNode(character.name));
+  nameCol.contentEditable = true;
+  nameCol.spellcheck = false;
+  nameCol.focusout = function() { saveName(this); };
   newRow.appendChild(nameCol);
 
   // create the dexterity modifier column
   var dexModCol = document.createElement("td");
   dexModCol.appendChild(document.createTextNode(character.dexMod));
+  dexModCol.contentEditable = true;
+  dexModCol.focusout = function() { saveDexMod(this); };
   newRow.appendChild(dexModCol);
 
   var rowActions = document.createElement("td");
@@ -76,7 +81,7 @@ function removeRow(tr) {
 
 // remove all non-player characters from the table
 function removeNPCs() {
-  for (var i = table.length - 1; i >= 0; i--) {
+  for (var i = table.length-1; i >= 0; i--) {
     if (!table[i].isPlayer) {
       removeCharacter(i);
     }
@@ -102,4 +107,29 @@ function rollForCharacters() {
   });
 
   populateTable();
+}
+
+// saves a DEX modifier edit to the Character in the table.
+function saveDexMod(td) {
+  var tdDexMod = parseInt(td.innerHTML.replace("+", ""), 10);
+  if (isNaN(tdDexMod)) {
+    td.classList.add("bg-danger");
+    td.classList.add("text-white");
+    return;
+  } else {
+    td.classList.remove("bg-danger");
+    td.classList.remove("text-white");
+  }
+
+  var cIndex = td.parentNode.rowIndex-1;
+  table[cIndex].dexMod = tdDexMod;
+  td.innerHTML = tdDexMod;
+}
+
+// saves a name edit to the Character in the table
+function saveName(td) {
+  var tdName = td.innerHTML;
+  var cIndex = td.parentNode.rowIndex-1;
+
+  table[cIndex].name = tdName;
 }
