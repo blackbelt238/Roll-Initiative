@@ -36,6 +36,8 @@ function addCharacterToTable(character) {
   // create the dexterity modifier column
   var dexModCol = document.createElement("td");
   dexModCol.appendChild(document.createTextNode(character.dexMod));
+  dexModCol.contentEditable = true;
+  dexModCol.focusout = function() { saveDexMod(this); };
   newRow.appendChild(dexModCol);
 
   var rowActions = document.createElement("td");
@@ -105,6 +107,23 @@ function rollForCharacters() {
   });
 
   populateTable();
+}
+
+// saves a DEX modifier edit to the Character in the table.
+function saveDexMod(td) {
+  var tdDexMod = parseInt(td.innerHTML.replace("+", ""), 10);
+  if (isNaN(tdDexMod)) {
+    td.classList.add("bg-danger");
+    td.classList.add("text-white");
+    return;
+  } else {
+    td.classList.remove("bg-danger");
+    td.classList.remove("text-white");
+  }
+
+  var cIndex = td.parentNode.rowIndex-1;
+  table[cIndex].dexMod = tdDexMod;
+  td.innerHTML = tdDexMod;
 }
 
 // saves a name edit to the Character in the table
