@@ -1,31 +1,31 @@
-table = []
-pageTableBody = document.getElementById("initiative").children[1];
+var table = [];
+var pageTableBody = document.getElementById("initiative").children[1];
 
-c1 = new Character("Adran", 4);
+var c1 = new Character("Adran", 4);
 table.push(c1);
 
-c2 = new Character("Jacob", 3);
+var c2 = new Character("Jacob", 3);
 table.push(c2);
 
-c3 = new Character("Galanthus Titarius", -1);
+var c3 = new Character("Galanthus Titarius", -1);
 table.push(c3);
 
 // given a Character object, add it to table#initiative
 function addCharacterToTable(character) {
-  newRow = document.createElement('tr');
+  var newRow = document.createElement("tr");
 
   // create the initiative column
-  initCol = document.createElement('td');
+  var initCol = document.createElement("td");
   initCol.appendChild(document.createTextNode(character.initiative)); // start the character's initiative at 0
   newRow.appendChild(initCol);
 
   // create the name column
-  nameCol = document.createElement('td');
+  var nameCol = document.createElement("td");
   nameCol.appendChild(document.createTextNode(character.name));
   newRow.appendChild(nameCol);
 
   // create the dexterity modifier column
-  dexModCol = document.createElement('td');
+  var dexModCol = document.createElement("td");
   dexModCol.appendChild(document.createTextNode(character.dexMod));
   newRow.appendChild(dexModCol);
 
@@ -35,8 +35,8 @@ function addCharacterToTable(character) {
 
 // adds all characters to table#initiative as rows
 function populateTable() {
-  for (key in table) {
-    character = table[key];
+  for (var key in table) {
+    var character = table[key];
     addCharacterToTable(character);
   }
 }
@@ -49,8 +49,8 @@ function rollForCharacters() {
   }
 
   // roll initiative for each character in the table
-  for (key in table) {
-    character = table[key];
+  for (var key in table) {
+    var character = table[key];
     character.rollInitiative();
   }
 

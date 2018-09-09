@@ -3,8 +3,8 @@ function rollDie(sides) {
 }
 
 function rollDice(number, sides) {
-  sum = 0;
-  for (i = 0; i < number; i++) {
+  var sum = 0;
+  for (var i = 0; i < number; i++) {
     sum += rollDie(sides);
   }
   return sum;
