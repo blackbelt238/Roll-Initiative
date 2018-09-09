@@ -35,6 +35,15 @@ function addCharacterToTable(character) {
   dexModCol.appendChild(document.createTextNode(character.dexMod));
   newRow.appendChild(dexModCol);
 
+  var rowActions = document.createElement("td");
+  // create the trash icon for deleting a row
+  var trashIcon = document.createElement("i");
+  trashIcon.classList.add("fas");
+  trashIcon.classList.add("fa-trash-alt");
+  rowActions.appendChild(trashIcon);
+  newRow.appendChild(rowActions);
+  trashIcon.onclick = function() { removeRow(this.parentNode.parentNode); };
+
   // add the row to the table body
   pageTableBody.appendChild(newRow);
 }
@@ -54,16 +63,24 @@ function populateTable() {
   }
 }
 
+// remove the Character at the given index in the table
+function removeCharacter(index) {
+  table.splice(index, 1);
+}
+
+// given a DOM table row to remove, delete it and its Character
+function removeRow(tr) {
+  removeCharacter(tr.rowindex-1);
+  populateTable();
+}
+
 // remove all non-player characters from the table
 function removeNPCs() {
-  var players = [];
   for (var i = 0; i < table.length; i++) {
-    var character = table[i];
-    if (character.isPlayer) {
-      players.push(character);
+    if (!table[i].isPlayer) {
+      removeCharacter(i);
     }
   }
-  table = players;
 
   populateTable();
 }

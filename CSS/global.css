@@ -11,3 +11,11 @@ div#table-container {
   max-width: 1000px;
   margin: auto;
 }
+
+table.table tbody tr td:nth-child(4) {
+  text-align: center;
+}
+
+i.fas {
+  cursor: pointer;
+}
