@@ -34,11 +34,11 @@ function addCharacterToTable(character) {
   newRow.appendChild(nameCol);
 
   // create the dexterity modifier column
-  var dexModCol = document.createElement("td");
-  dexModCol.appendChild(document.createTextNode(character.dexMod));
-  dexModCol.contentEditable = true;
-  dexModCol.focusout = function() { saveDexMod(this); };
-  newRow.appendChild(dexModCol);
+  var modCol = document.createElement("td");
+  modCol.appendChild(document.createTextNode(character.mod));
+  modCol.contentEditable = true;
+  modCol.focusout = function() { saveMod(this); };
+  newRow.appendChild(modCol);
 
   var rowActions = document.createElement("td");
   // create the trash icon for deleting a row
@@ -110,9 +110,9 @@ function rollForCharacters() {
 }
 
 // saves a DEX modifier edit to the Character in the table.
-function saveDexMod(td) {
-  var tdDexMod = parseInt(td.innerHTML.replace("+", ""), 10);
-  if (isNaN(tdDexMod)) {
+function saveMod(td) {
+  var tdMod = parseInt(td.innerHTML.replace("+", ""), 10);
+  if (isNaN(tdMod)) {
     td.classList.add("bg-danger");
     td.classList.add("text-white");
     return;
@@ -122,8 +122,8 @@ function saveDexMod(td) {
   }
 
   var cIndex = td.parentNode.rowIndex-1;
-  table[cIndex].dexMod = tdDexMod;
-  td.innerHTML = tdDexMod;
+  table[cIndex].mod = tdMod;
+  td.innerHTML = tdMod;
 }
 
 // saves a name edit to the Character in the table
