@@ -42,6 +42,7 @@ function addCharacterToTable(character) {
   trashIcon.classList.add("fa-trash-alt");
   rowActions.appendChild(trashIcon);
   newRow.appendChild(rowActions);
+  trashIcon.onclick = function() { removeCharacter(this.parentNode.parentNode); }
 
   // add the row to the table body
   pageTableBody.appendChild(newRow);
@@ -60,6 +61,12 @@ function populateTable() {
   for (var i = 0; i < table.length; i++) {
     addCharacterToTable(table[i]);
   }
+}
+
+// given a DOM table row to remove, delete it and its Character
+function removeCharacter(tr) {
+  table.splice(tr.rowIndex-1, 1);
+  populateTable();
 }
 
 // remove all non-player characters from the table
