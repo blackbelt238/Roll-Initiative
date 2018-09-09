@@ -28,6 +28,9 @@ function addCharacterToTable(character) {
   // create the name column
   var nameCol = document.createElement("td");
   nameCol.appendChild(document.createTextNode(character.name));
+  nameCol.contentEditable = true;
+  nameCol.spellcheck = false;
+  nameCol.focusout = function() { saveName(this); };
   newRow.appendChild(nameCol);
 
   // create the dexterity modifier column
@@ -76,7 +79,7 @@ function removeRow(tr) {
 
 // remove all non-player characters from the table
 function removeNPCs() {
-  for (var i = table.length - 1; i >= 0; i--) {
+  for (var i = table.length-1; i >= 0; i--) {
     if (!table[i].isPlayer) {
       removeCharacter(i);
     }
@@ -102,4 +105,12 @@ function rollForCharacters() {
   });
 
   populateTable();
+}
+
+// saves a name edit to the Character in the table
+function saveName(td) {
+  var tdName = td.innerHTML;
+  var cIndex = td.parentNode.rowIndex-1;
+
+  table[cIndex].name = tdName;
 }
