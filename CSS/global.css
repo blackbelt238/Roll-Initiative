@@ -15,3 +15,7 @@ div#table-container {
 table.table tbody tr td:nth-child(4) {
   text-align: center;
 }
+
+i.fas {
+  cursor: pointer;
+}
