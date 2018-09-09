@@ -1,10 +1,10 @@
 var table = [];
 var pageTableBody = document.getElementById("initiative").children[1];
 
-var c1 = new Character("Adran", 4);
+var c1 = new Character("Raja the Red", 4);
 table.push(c1);
 
-var c2 = new Character("Jacob", 3);
+var c2 = new Character("Tryst", 3);
 table.push(c2);
 
 var c3 = new Character("Galanthus Titarius", -1);
@@ -53,8 +53,12 @@ function rollForCharacters() {
   }
 
   // order the characters from heighest initiative score to lowest
-  table.sort(function(a, b) {
-    return b.initiative - a.initiative;
+  table.sort(function(c1, c2) {
+    // utilize randomness to break ties
+    if (c1.initiative == c2.initiative) {
+      return (rollDice(1, 2) == 2 ? -1 : 1);
+    }
+    return c2.initiative - c1.initiative;
   })
 
   populateTable();
