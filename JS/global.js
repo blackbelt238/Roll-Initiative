@@ -52,5 +52,10 @@ function rollForCharacters() {
     table[i].rollInitiative();
   }
 
+  // order the characters from heighest initiative score to lowest
+  table.sort(function(a, b) {
+    return b.initiative - a.initiative;
+  })
+
   populateTable();
 }
