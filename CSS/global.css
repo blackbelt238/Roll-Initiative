@@ -11,9 +11,3 @@ div#table-container {
   max-width: 1000px;
   margin: auto;
 }
-
-div#table-container table.table thead {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
-}
