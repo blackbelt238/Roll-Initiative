@@ -35,9 +35,8 @@ function addCharacterToTable(character) {
 
 // adds all characters to table#initiative as rows
 function populateTable() {
-  for (var key in table) {
-    var character = table[key];
-    addCharacterToTable(character);
+  for (var i = 0; i < table.length; i++) {
+    addCharacterToTable(table[i]);
   }
 }
 
@@ -49,9 +48,8 @@ function rollForCharacters() {
   }
 
   // roll initiative for each character in the table
-  for (var key in table) {
-    var character = table[key];
-    character.rollInitiative();
+  for (var i = 0; i < table.length; i++) {
+    table[i].rollInitiative();
   }
 
   populateTable();
