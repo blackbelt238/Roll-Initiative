@@ -1,4 +1,9 @@
-body {
+a.navbar-brand {
+  font-family: 'Uncial Antiqua', cursive;
+}
+
+/* Table styling */
+div#table-container {
   max-width: 1000px;
   margin: auto;
 }
