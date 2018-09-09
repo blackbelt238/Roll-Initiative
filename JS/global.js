@@ -76,7 +76,7 @@ function removeRow(tr) {
 
 // remove all non-player characters from the table
 function removeNPCs() {
-  for (var i = 0; i < table.length; i++) {
+  for (var i = table.length - 1; i >= 0; i--) {
     if (!table[i].isPlayer) {
       removeCharacter(i);
     }
