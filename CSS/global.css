@@ -1,3 +1,7 @@
+nav.navbar {
+  margin-bottom: 2em;
+}
+
 a.navbar-brand {
   font-family: 'Uncial Antiqua', cursive;
 }
@@ -8,6 +12,8 @@ div#table-container {
   margin: auto;
 }
 
-table.table {
-  margin-top: 1em;
+div#table-container table.table thead {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
