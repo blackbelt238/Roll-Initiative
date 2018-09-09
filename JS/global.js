@@ -42,7 +42,7 @@ function addCharacterToTable(character) {
   trashIcon.classList.add("fa-trash-alt");
   rowActions.appendChild(trashIcon);
   newRow.appendChild(rowActions);
-  trashIcon.onclick = function() { removeCharacter(this.parentNode.parentNode); }
+  trashIcon.onclick = function() { removeRow(this.parentNode.parentNode); };
 
   // add the row to the table body
   pageTableBody.appendChild(newRow);
@@ -63,9 +63,14 @@ function populateTable() {
   }
 }
 
+// remove the Character at the given index in the table
+function removeCharacter(index) {
+  table.splice(index, 1);
+}
+
 // given a DOM table row to remove, delete it and its Character
-function removeCharacter(tr) {
-  table.splice(tr.rowIndex-1, 1);
+function removeRow(tr) {
+  removeCharacter(tr.rowindex-1);
   populateTable();
 }
 
