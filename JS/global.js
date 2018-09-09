@@ -55,11 +55,11 @@ function rollForCharacters() {
   // order the characters from heighest initiative score to lowest
   table.sort(function(c1, c2) {
     // utilize randomness to break ties
-    if (c1.initiative == c2.initiative) {
-      return (rollDice(1, 2) == 2 ? -1 : 1);
+    if (c1.initiative === c2.initiative) {
+      return (rollDice(1, 2) === 2 ? -1 : 1);
     }
     return c2.initiative - c1.initiative;
-  })
+  });
 
   populateTable();
 }
