@@ -9,6 +9,7 @@ table.push(c2);
 var c3 = new Character("Galanthus Titarius", -1);
 table.push(c3);
 
+// given a Character object, add it to table#initiative
 function addCharacterToTable(character) {
   pageTableBody = document.getElementById("initiative").children[1];
   var newRow = document.createElement('tr');
@@ -25,16 +26,15 @@ function addCharacterToTable(character) {
 
   // create the dexterity modifier column
   var dexModCol = document.createElement('td');
-  nameCol.appendChild(document.createTextNode(character.dexMod));
-  newRow.appendChild(nameCol);
+  dexModCol.appendChild(document.createTextNode(character.dexMod));
+  newRow.appendChild(dexModCol);
 
+  // add the row to the table body
   pageTableBody.appendChild(newRow);
 }
 
 function populateTable() {
-  for (character in table) {
-    addCharacterToTable(character);
+  for (var i = 0; i < table.length; i++) {
+    addCharacterToTable(table[i]);
   }
 }
-
-populateTable();
