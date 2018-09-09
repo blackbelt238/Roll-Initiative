@@ -1,7 +1,7 @@
-function Character(name, dexMod, isPlayer) {
+function Character(name, mod, isPlayer) {
   this.name = name;
   this.isPlayer = isPlayer;
-  this.dexMod = dexMod;
+  this.mod = mod;
   this.initiative = 0;
 
   // define methods
@@ -9,5 +9,5 @@ function Character(name, dexMod, isPlayer) {
 }
 
 function rollInitiative() {
-  this.initiative = rollDice(1, 20) + this.dexMod;
+  this.initiative = rollDice(1, 20) + this.mod;
 }
