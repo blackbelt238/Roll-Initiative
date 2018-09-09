@@ -35,6 +35,14 @@ function addCharacterToTable(character) {
   dexModCol.appendChild(document.createTextNode(character.dexMod));
   newRow.appendChild(dexModCol);
 
+  var rowActions = document.createElement("td");
+  // create the trash icon for deleting a row
+  var trashIcon = document.createElement("i");
+  trashIcon.classList.add("fas");
+  trashIcon.classList.add("fa-trash-alt");
+  rowActions.appendChild(trashIcon);
+  newRow.appendChild(rowActions);
+
   // add the row to the table body
   pageTableBody.appendChild(newRow);
 }
