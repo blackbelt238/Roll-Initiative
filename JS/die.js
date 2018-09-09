@@ -1,5 +1,5 @@
 function rollDie(sides) {
-  return (sides - 1) * Math.random() + 1
+  return (sides - 1) * Math.random() + 1;
 }
 
 function rollDice(number, sides) {
