@@ -36,12 +36,36 @@
           <th style="width:16.66%" scope="col">Initiative</th>
           <th style="width:58.35%" scope="col">Name</th>
           <th style="width:16.66%" scope="col">Modifier</th>
-          <th style="width:8.33%" scope="col"></th>
+          <th style="width:8.33%" scope="col">
+            <!-- plus that triggers the add character modal -->
+            <i class="fas fa-plus" data-toggle="modal" data-target="#addCharacterModal"></i>
+          </th>
         </tr>
       </thead>
 
       <tbody></tbody>
     </table>
+  </div>
+
+  <!-- Add Character Modal -->
+  <div class="modal fade" id="addCharacterModal" tabindex="-1" role="dialog" aria-labelledby="addCharacterLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Bootstrap JS -->
