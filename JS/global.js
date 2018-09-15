@@ -1,23 +1,23 @@
-var table = [];
+var table = new Table();
 var pageTableBody = document.getElementById("initiative").children[1];
 
 var c1 = new Character("Raja the Red", 4, true);
-table.push(c1);
+table.addCharacter(c1);
 
 var c2 = new Character("Tryst", 3, true);
-table.push(c2);
+table.addCharacter(c2);
 
 var c3 = new Character("Galanthus Titarius", -1, false);
-table.push(c3);
+table.addCharacter(c3);
 
 var c4 = new Character("Crakule", 2, true);
-table.push(c4);
+table.addCharacter(c4);
 
 var c5 = new Character("Solomon", 6, false);
-table.push(c5);
+table.addCharacter(c5);
 
 // given a Character object, add it to table#initiative
-function addCharacterToTable(character) {
+function addCharacterToPage(character) {
   var newRow = document.createElement("tr");
 
   // create the initiative column
@@ -54,65 +54,61 @@ function addCharacterToTable(character) {
 }
 
 // wipe all rows from the table
-function clearTable() {
+function clearTableOnPage() {
   while (pageTableBody.firstChild) {
     pageTableBody.removeChild(pageTableBody.firstChild);
   }
 }
 
+// create a new character from data in the modal
+function createCharacterFromModal() {
+  var mName = document.getElementById("nameInput").value;
+  var mInitMod = parseInt(document.getElementById("modifierInput").value, 10);
+  var mIsPlayer = $("#modifierInput").hasClass("active");
+
+  return new Character(mName, mInitMod, mIsPlayer);
+}
+
+// removes any data from the modal
+function resetModal() {
+  document.getElementById("nameInput").value = "";
+  document.getElementById("modifierInput").value = 0;
+  document.getElementById("modifierInput").classList.remove("active");
+}
+
 // adds all characters to table#initiative as rows
-function populateTable() {
-  clearTable();
-  for (var i = 0; i < table.length; i++) {
-    addCharacterToTable(table[i]);
+function populatePage() {
+  clearTableOnPage();
+  for (var i = 0; i < table.size(); i++) {
+    addCharacterToPage(table.getCharacter(i));
   }
 }
 
-// using input from the modal, add a character to the table
-function addCharacter() {
+// using input from the modal, add a new character to the table
+function addCharacterFromModal() {
   var character = createCharacterFromModal();
-  addCharacterToTable(character);
-}
+  table.addCharacter(character);
+  populatePage();
 
-// remove the Character at the given index in the table
-function removeCharacter(index) {
-  table.splice(index, 1);
+  // hide the modal
+  $('#addCharacterModal').modal('hide');
 }
 
 // given a DOM table row to remove, delete it and its Character
 function removeRow(tr) {
-  removeCharacter(tr.rowindex-1);
-  populateTable();
+  table.removeCharacter(tr.rowindex-1);
+  populatePage();
 }
 
-// remove all non-player characters from the table
-function removeNPCs() {
-  for (var i = table.length-1; i >= 0; i--) {
-    if (!table[i].isPlayer) {
-      removeCharacter(i);
-    }
-  }
-
-  populateTable();
+function removeNPCsOnPage() {
+  table.removeNPCs();
+  populatePage();
 }
 
 // rolls initiative for all characters in table#initiative
-function rollForCharacters() {
-  // roll initiative for each character in the table
-  for (var i = 0; i < table.length; i++) {
-    table[i].rollInitiative();
-  }
-
-  // order the characters from heighest initiative score to lowest
-  table.sort(function(c1, c2) {
-    // utilize randomness to break ties
-    if (c1.initiative === c2.initiative) {
-      return (rollDice(1, 2) === 2 ? -1 : 1);
-    }
-    return c2.initiative - c1.initiative;
-  });
-
-  populateTable();
+function rollForCharactersOnPage() {
+  table.rollForCharacters();
+  populatePage();
 }
 
 // saves a DEX modifier edit to the Character in the table.
@@ -128,7 +124,7 @@ function saveMod(td) {
   }
 
   var cIndex = td.parentNode.rowIndex-1;
-  table[cIndex].mod = tdMod;
+  table.getCharacter(cIndex).mod = tdMod;
   td.innerHTML = tdMod;
 }
 
@@ -137,5 +133,5 @@ function saveName(td) {
   var tdName = td.innerHTML;
   var cIndex = td.parentNode.rowIndex-1;
 
-  table[cIndex].name = tdName;
+  table.getCharacter(cIndex).name = tdName;
 }
