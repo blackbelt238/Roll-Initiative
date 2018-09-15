@@ -68,6 +68,12 @@ function populateTable() {
   }
 }
 
+// using input from the modal, add a character to the table
+function addCharacter() {
+  var character = createCharacterFromModal();
+  addCharacterToTable(character);
+}
+
 // remove the Character at the given index in the table
 function removeCharacter(index) {
   table.splice(index, 1);
