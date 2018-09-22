@@ -96,7 +96,7 @@ function addCharacterFromModal() {
 
 // given a DOM table row to remove, delete it and its Character
 function removeRow(tr) {
-  table.removeCharacter(tr.rowindex-1);
+  table.removeCharacter(tr.rowIndex-1);
   populatePage();
 }
 
