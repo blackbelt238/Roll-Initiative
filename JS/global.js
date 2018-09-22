@@ -73,7 +73,7 @@ function createCharacterFromModal() {
 function resetModal() {
   document.getElementById("nameInput").value = "";
   document.getElementById("modifierInput").value = 0;
-  document.getElementById("modifierInput").classList.remove("active");
+  document.getElementById("isPlayerInput").classList.remove("active");
 }
 
 // adds all characters to table#initiative as rows

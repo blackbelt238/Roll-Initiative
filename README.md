@@ -1,4 +1,4 @@
-# Roll-Initiative (0.8.1)
+# Roll-Initiative (0.8.3)
 The initiative roller is a system-agnostic tool created to aid GMs in keeping track of combat.
 
 ### Roll
