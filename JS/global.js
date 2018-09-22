@@ -115,15 +115,9 @@ function rollForCharactersOnPage() {
 function saveMod(td) {
   var cIndex = td.parentNode.rowIndex-1;
   var newMod = table.getCharacter(cIndex).setMod(td.innerHTML);
-  td.innerHTML = table.getCharacter(cIndex).mod;
 
-  if (isNaN(newMod)) {
-    td.classList.add("bg-danger");
-    td.classList.add("text-white");
-  } else {
-    td.classList.remove("bg-danger");
-    td.classList.remove("text-white");
-  }
+  // set the dex modifier in the table to whatever it is on the character
+  td.innerHTML = table.getCharacter(cIndex).mod;
 }
 
 // saves a name edit to the Character in the table

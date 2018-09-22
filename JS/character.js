@@ -11,7 +11,6 @@ class Character {
     if (!isNaN(mod)) {
       this.mod = mod;
     }
-    return mod;
   }
 
   setName(name) {
