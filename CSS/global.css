@@ -20,3 +20,13 @@ table.table tr td:last-child {
 i.fas {
   cursor: pointer;
 }
+
+@media (max-width: 500px) {
+  nav.navbar {
+    margin-bottom: 1em;
+  }
+
+  span.hide-on-mobile {
+    display: none;
+  }
+}
