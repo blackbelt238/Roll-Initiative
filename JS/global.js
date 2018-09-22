@@ -91,7 +91,7 @@ function addCharacterFromModal() {
   populatePage();
 
   // hide the modal
-  $('#addCharacterModal').modal('hide');
+  $("#addCharacterModal").modal("hide");
 }
 
 // given a DOM table row to remove, delete it and its Character
