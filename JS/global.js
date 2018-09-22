@@ -113,19 +113,11 @@ function rollForCharactersOnPage() {
 
 // saves a DEX modifier edit to the Character in the table.
 function saveMod(td) {
-  var tdMod = parseInt(td.innerHTML.replace("+", ""), 10);
-  if (isNaN(tdMod)) {
-    td.classList.add("bg-danger");
-    td.classList.add("text-white");
-    return;
-  } else {
-    td.classList.remove("bg-danger");
-    td.classList.remove("text-white");
-  }
-
   var cIndex = td.parentNode.rowIndex-1;
-  table.getCharacter(cIndex).mod = tdMod;
-  td.innerHTML = tdMod;
+  var newMod = table.getCharacter(cIndex).setMod(td.innerHTML);
+
+  // set the dex modifier in the table to whatever it is on the character
+  td.innerHTML = table.getCharacter(cIndex).mod;
 }
 
 // saves a name edit to the Character in the table
@@ -133,5 +125,5 @@ function saveName(td) {
   var tdName = td.innerHTML;
   var cIndex = td.parentNode.rowIndex-1;
 
-  table.getCharacter(cIndex).name = tdName;
+  table.getCharacter(cIndex).setName(tdName);
 }
