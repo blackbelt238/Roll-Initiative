@@ -1,3 +1,4 @@
+// the table of characters that the page displays
 class Table {
   constructor() {
     this.table = [];

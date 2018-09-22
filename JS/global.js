@@ -64,7 +64,7 @@ function clearTableOnPage() {
 function createCharacterFromModal() {
   var mName = document.getElementById("nameInput").value;
   var mInitMod = parseInt(document.getElementById("modifierInput").value, 10);
-  var mIsPlayer = $("#modifierInput").hasClass("active");
+  var mIsPlayer = $("#isPlayerInput").hasClass("active");
 
   return new Character(mName, mInitMod, mIsPlayer);
 }
