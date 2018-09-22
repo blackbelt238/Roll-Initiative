@@ -21,11 +21,13 @@ i.fas {
   cursor: pointer;
 }
 
+/* phone-specific styling */
 @media (max-width: 500px) {
   nav.navbar {
     margin-bottom: 1em;
   }
 
+  /* used to shorten longer words on mobile devices */
   span.hide-on-mobile {
     display: none;
   }
