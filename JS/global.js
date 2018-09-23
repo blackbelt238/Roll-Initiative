@@ -1,21 +1,6 @@
 var table = new Table();
 var pageTableBody = document.getElementById("initiative").children[1];
 
-var c1 = new Character("Raja the Red", 4, true);
-table.addCharacter(c1);
-
-var c2 = new Character("Tryst", 3, true);
-table.addCharacter(c2);
-
-var c3 = new Character("Galanthus Titarius", -1, false);
-table.addCharacter(c3);
-
-var c4 = new Character("Crakule", 2, true);
-table.addCharacter(c4);
-
-var c5 = new Character("Solomon", 6, false);
-table.addCharacter(c5);
-
 // given a Character object, add it to table#initiative
 function addCharacterToPage(character) {
   var newRow = document.createElement("tr");
