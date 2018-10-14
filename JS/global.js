@@ -99,7 +99,7 @@ function rollForCharactersOnPage() {
 // saves a DEX modifier edit to the Character in the table.
 function saveMod(td) {
   var cIndex = td.parentNode.rowIndex-1;
-  var newMod = table.getCharacter(cIndex).setMod(td.innerHTML);
+  table.getCharacter(cIndex).setMod(td.innerHTML);
 
   // set the dex modifier in the table to whatever it is on the character
   td.innerHTML = table.getCharacter(cIndex).mod;
