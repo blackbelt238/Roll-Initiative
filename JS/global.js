@@ -48,7 +48,7 @@ function clearTableOnPage() {
 // create a new character from data in the modal
 function createCharacterFromModal() {
   var mName = document.getElementById("nameInput").value;
-  var mInitMod = parseInt(document.getElementById("modifierInput").value, 10) || 0;
+  var mInitMod = parseInt(document.getElementById("modifierInput").value, 10);
   var mIsPlayer = $("#isPlayerInput").hasClass("active");
 
   return new Character(mName, mInitMod, mIsPlayer);
