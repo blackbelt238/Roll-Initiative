@@ -98,7 +98,7 @@ function rollForCharactersOnPage() {
 function editModifierOnPage(td) {
   // add rolling input to the td
   let rolling = document.createElement("input");
-  rolling.id = "editMod"
+  rolling.id = "editMod";
   rolling.type = "number";
   rolling.placeholder = "0";
   rolling.classList.add("form-control");
