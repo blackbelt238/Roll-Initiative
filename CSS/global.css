@@ -17,6 +17,13 @@ table.table tr td:last-child {
   text-align: center;
 }
 
+/* remove spinner arrows for numeric inputs inside a table cell */
+td input[type=number]::-webkit-inner-spin-button,
+td input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 i.fas {
   cursor: pointer;
 }
