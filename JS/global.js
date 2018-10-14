@@ -21,8 +21,7 @@ function addCharacterToPage(character) {
   // create the dexterity modifier column
   var modCol = document.createElement("td");
   modCol.appendChild(document.createTextNode(character.mod));
-  modCol.contentEditable = true;
-  modCol.focusout = function() { saveMod(this); };
+  modCol.onclick = function() { editModifierOnPage(this); };
   newRow.appendChild(modCol);
 
   var rowActions = document.createElement("td");
@@ -96,13 +95,32 @@ function rollForCharactersOnPage() {
   populatePage();
 }
 
-// saves a DEX modifier edit to the Character in the table.
-function saveMod(td) {
-  var cIndex = td.parentNode.rowIndex-1;
-  table.getCharacter(cIndex).setMod(td.innerHTML);
+function editModifierOnPage(td) {
+  // add rolling input to the td
+  let rolling = document.createElement("input");
+  rolling.id = "editMod"
+  rolling.type = "number";
+  rolling.placeholder = "0";
+  rolling.classList.add("form-control");
 
-  // set the dex modifier in the table to whatever it is on the character
-  td.innerHTML = table.getCharacter(cIndex).mod;
+  rolling.value = td.innerText;                     // set the value to the current modifier
+  td.innerHTML = "";                                // clear the cell's contents
+  rolling.focusout = function() { saveMod(this); }; // save on focusout
+  td.appendChild(rolling);
+
+  rolling.focus(); // focus on the rolling input
+}
+
+// saves a DEX modifier edit to the Character in the table.
+function saveMod(rollingInput) {
+  var cIndex = rollingInput.parentNode.parentNode.rowIndex-1;
+  console.log(cIndex);
+  console.log(table.getCharacter(cIndex));
+  console.log(rollingInput.value);
+  table.getCharacter(cIndex).setMod(rollingInput.value);
+
+  // set the dex modifier in the table to whatever it is on the character; remove rolling input
+  rollingInput.parentNode.innerHTML = table.getCharacter(cIndex).mod;
 }
 
 // saves a name edit to the Character in the table
