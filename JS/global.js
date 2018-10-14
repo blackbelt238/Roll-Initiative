@@ -114,9 +114,6 @@ function editModifierOnPage(td) {
 // saves a DEX modifier edit to the Character in the table.
 function saveMod(rollingInput) {
   var cIndex = rollingInput.parentNode.parentNode.rowIndex-1;
-  console.log(cIndex);
-  console.log(table.getCharacter(cIndex));
-  console.log(rollingInput.value);
   table.getCharacter(cIndex).setMod(rollingInput.value);
 
   // set the dex modifier in the table to whatever it is on the character; remove rolling input
