@@ -1,10 +1,12 @@
 class Character {
   constructor(name, mod, isPlayer) {
     this.isPlayer = isPlayer;
-    this.initiative = 0;
 
     this.setName(name);
     this.setMod(mod);
+
+    // initiative is immediately rolled upon character creation
+    this.rollInitiative();
   }
 
   setMod(mod) {
