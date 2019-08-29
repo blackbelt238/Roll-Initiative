@@ -6,6 +6,7 @@ class Table {
 
   addCharacter(character) {
     this.table.push(character);
+    this.sort();
   }
 
   getCharacter(index) {
@@ -32,7 +33,15 @@ class Table {
       this.table[i].rollInitiative();
     }
 
-    // order the characters from heighest initiative score to lowest
+    this.sort();
+  }
+
+  size() {
+    return this.table.length;
+  }
+
+  // orders the characters from heighest initiative score to lowest
+  sort() {
     this.table.sort(function(c1, c2) {
       // utilize randomness to break ties
       if (c1.initiative === c2.initiative) {
@@ -40,9 +49,5 @@ class Table {
       }
       return c2.initiative - c1.initiative;
     });
-  }
-
-  size() {
-    return this.table.length;
   }
 }
