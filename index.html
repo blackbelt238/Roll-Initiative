@@ -73,15 +73,15 @@
               <!-- Character information -->
               <form id="character-form">
                 <div class="form-group">
-                  <label for="nameInput">Name</label>
-                  <input class="form-control" id="nameInput" placeholder="Character name">
+                  <label for="characterNameInput">Name</label>
+                  <input class="form-control nameInput" id="characterNameInput" placeholder="Character name">
                 </div>
                 <div class="form-group">
-                  <label for="modifierInput">Initiative Modifier</label>
-                  <input type="number" class="form-control" id="modifierInput" value="0" placeholder="0">
+                  <label for="characterNumberInput">Initiative Modifier</label>
+                  <input type="number" class="form-control numberInput" id="characterNumberInput" value="0" placeholder="0">
                 </div>
                 <div class="form-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-secondary" id="isPlayerInput">
+                  <label class="btn btn-secondary" id="characterIsPlayerInput">
                     <input type="checkbox" checked autocomplete="off"> Is a Player
                   </label>
                 </div>
@@ -91,12 +91,12 @@
               <!-- Action information -->
               <form id="action-form">
                 <div class="form-group">
-                  <label for="nameInput">Name</label>
-                  <input class="form-control" id="nameInput" placeholder="Action name">
+                  <label for="actionNameInput">Name</label>
+                  <input class="form-control nameInput" id="actionNameInput" placeholder="Action name">
                 </div>
                 <div class="form-group">
-                  <label for="modifierInput">Initiative</label>
-                  <input type="number" class="form-control" id="modifierInput" value="20" placeholder="20">
+                  <label for="actionNumberInput">Initiative</label>
+                  <input type="number" class="form-control numberInput" id="actionNumberInput" value="20" placeholder="20">
                 </div>
               </form> <!-- end action form -->
             </div> <!-- end pills-action tab-pane -->
@@ -105,7 +105,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-info" onclick="addCharacterFromModal()">Add</button>
+          <button type="button" class="btn btn-info" onclick="addFromModal()">Add</button>
         </div>
       </div>
     </div>
@@ -127,8 +127,8 @@
   <script src="./JS/global.js"></script>
 
   <script>
+    // reset all modal fields to defaults upon hide
     $(".modal").on("hidden.bs.modal", resetModal);
-    populatePage();
   </script>
 </body>
 </html>
