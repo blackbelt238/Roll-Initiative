@@ -44,6 +44,14 @@ function clearTableOnPage() {
   }
 }
 
+// create a new action from data in the modal
+function createActionFromModal() {
+  var mName = document.getElementById("actionNameInput").value;
+  var mInit = parseInt(document.getElementById("actionNumberInput").value, 10);
+
+  return new Character(mName, 0, false, true, mInit);
+}
+
 // create a new character from data in the modal
 function createCharacterFromModal() {
   var mName = document.getElementById("characterNameInput").value;
@@ -77,9 +85,9 @@ function addFromModal() {
          .innerText;
 
   if (activePillTitle.toLowerCase() === "character") {
-    addCharacterFromModal();
+    table.addCharacter(createCharacterFromModal());
   } else if (activePillTitle.toLowerCase() === "action") {
-    console.warn("TODO: create addActionFromModal function");
+    table.addCharacter(createActionFromModal());
   } else {
     console.error("Invalid modal pill title: " + activePillTitle);
   }
@@ -87,12 +95,6 @@ function addFromModal() {
   // rebuild the table before hiding the modal
   populatePage();
   $("#addEntryModal").modal("hide");
-}
-
-// using input from the modal, add a new character to the table
-function addCharacterFromModal() {
-  var character = createCharacterFromModal();
-  table.addCharacter(character);
 }
 
 // given a DOM table row to remove, delete it and its Character

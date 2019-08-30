@@ -19,8 +19,10 @@ class Table {
 
   // remove all non-player characters from the table
   removeNPCs() {
+    var character;
     for (var i = this.table.length-1; i >= 0; i--) {
-      if (!this.table[i].isPlayer) {
+      character = this.table[i];
+      if (!character.isPlayer && !character.isAction) {
         this.removeCharacter(i);
       }
     }
@@ -40,11 +42,18 @@ class Table {
     return this.table.length;
   }
 
-  // orders the characters from heighest initiative score to lowest
+  // orders the characters from highest initiative score to lowest
   sort() {
     this.table.sort(function(c1, c2) {
-      // utilize randomness to break ties
       if (c1.initiative === c2.initiative) {
+        // actions must always lose initiative ties
+        if (c2.isAction) {
+          return -1;
+        } else if (c1.isAction) {
+          return 1;
+        }
+
+        // utilize randomness to break ties
         return (rollDice(1, 2) === 2 ? -1 : 1);
       }
       return c2.initiative - c1.initiative;

@@ -1,12 +1,18 @@
 class Character {
-  constructor(name, mod, isPlayer) {
+  constructor(name, mod, isPlayer, isAction = false, initiative = 0) {
     this.isPlayer = isPlayer;
+    this.isAction = isAction;
 
     this.setName(name);
     this.setMod(mod);
 
     // initiative is immediately rolled upon character creation
+    this.initiative = initiative;
     this.rollInitiative();
+  }
+
+  setIsAction(isAction) {
+    this.isAction = true;
   }
 
   setMod(mod) {
@@ -22,7 +28,9 @@ class Character {
     this.name = stripTags(name);
   }
 
+  // rolls this character's initiative unless it is an action
   rollInitiative() {
+    if (this.isAction) return;
     this.initiative = rollDice(1, 20) + this.mod;
   }
 }
