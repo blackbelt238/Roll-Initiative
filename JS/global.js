@@ -44,20 +44,30 @@ function clearTableOnPage() {
   }
 }
 
+// create a new action from data in the modal
+function createActionFromModal() {
+  var mName = document.getElementById("actionNameInput").value;
+  var mInit = parseInt(document.getElementById("actionNumberInput").value, 10);
+
+  return new Character(mName, 0, false, true, mInit);
+}
+
 // create a new character from data in the modal
 function createCharacterFromModal() {
-  var mName = document.getElementById("nameInput").value;
-  var mInitMod = parseInt(document.getElementById("modifierInput").value, 10);
-  var mIsPlayer = $("#isPlayerInput").hasClass("active");
+  var mName = document.getElementById("characterNameInput").value;
+  var mInitMod = parseInt(document.getElementById("characterNumberInput").value, 10);
+  var mIsPlayer = $("#characterIsPlayerInput").hasClass("active");
 
   return new Character(mName, mInitMod, mIsPlayer);
 }
 
-// removes any data from the modal
+// resets all data from modal content
 function resetModal() {
-  document.getElementById("nameInput").value = "";
-  document.getElementById("modifierInput").value = 0;
-  document.getElementById("isPlayerInput").classList.remove("active");
+  Array.from(document.getElementsByClassName("nameInput"))
+       .forEach(input => input.value = "");
+  document.getElementById("characterNumberInput").value = 0;
+  document.getElementById("actionNumberInput").value = 20;
+  document.getElementById("characterIsPlayerInput").classList.remove("active");
 }
 
 // adds all characters to table#initiative as rows
@@ -68,14 +78,23 @@ function populatePage() {
   }
 }
 
-// using input from the modal, add a new character to the table
-function addCharacterFromModal() {
-  var character = createCharacterFromModal();
-  table.addCharacter(character);
-  populatePage();
+function addFromModal() {
+  var activePillTitle =
+    Array.from(document.getElementsByClassName("nav-link"))
+         .find(pill => pill.classList.contains("active"))
+         .innerText;
 
-  // hide the modal
-  $("#addCharacterModal").modal("hide");
+  if (activePillTitle.toLowerCase() === "character") {
+    table.addCharacter(createCharacterFromModal());
+  } else if (activePillTitle.toLowerCase() === "action") {
+    table.addCharacter(createActionFromModal());
+  } else {
+    console.error("Invalid modal pill title: " + activePillTitle);
+  }
+
+  // rebuild the table before hiding the modal
+  populatePage();
+  $("#addEntryModal").modal("hide");
 }
 
 // given a DOM table row to remove, delete it and its Character

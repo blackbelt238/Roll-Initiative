@@ -37,8 +37,8 @@
           <th style="width:58.35%" scope="col">Name</th>
           <th style="width:16.66%" scope="col">Mod<span class="hide-on-mobile">ifier</span></th>
           <th style="width:8.33%" scope="col">
-            <!-- plus that reveals the add character modal -->
-            <i class="fas fa-plus" data-toggle="modal" data-target="#addCharacterModal"></i>
+            <!-- plus symbol that reveals the add character modal -->
+            <i class="fas fa-plus" data-toggle="modal" data-target="#addEntryModal"></i>
           </th>
         </tr>
       </thead>
@@ -48,37 +48,64 @@
     </table>
   </div>
 
-  <!-- Add Character Modal -->
-  <div class="modal fade" id="addCharacterModal" tabindex="-1" role="dialog" aria-labelledby="addCharacterLabel" aria-hidden="true">
+  <!-- Add Entry Modal -->
+  <div class="modal fade" id="addEntryModal" tabindex="-1" role="dialog" aria-labelledby="addCharacterLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Character</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add New Entry</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <i class="fas fa-times"></i>
           </button>
         </div>
+
         <div id="modalBody" class="modal-body">
-          <!-- Character information -->
-          <form>
-            <div class="form-group">
-              <label for="nameInput">Name</label>
-              <input class="form-control" id="nameInput" placeholder="Character name">
-            </div>
-            <div class="form-group">
-              <label for="modifierInput">Initiative Modifier</label>
-              <input type="number" class="form-control" id="modifierInput" value="0" placeholder="0">
-            </div>
-            <div class="form-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-secondary" id="isPlayerInput">
-                <input type="checkbox" checked autocomplete="off"> Is a Player
-              </label>
-            </div>
-          </form>
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-character-tab" data-toggle="pill" href="#pills-character" role="tab" aria-controls="pills-character" aria-selected="true">Character</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-action-tab" data-toggle="pill" href="#pills-action" role="tab" aria-controls="pills-action" aria-selected="false">Action</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-character" role="tabpanel" aria-labelledby="pills-character-tab">
+              <!-- Character information -->
+              <form id="character-form">
+                <div class="form-group">
+                  <label for="characterNameInput">Name</label>
+                  <input class="form-control nameInput" id="characterNameInput" placeholder="Character name">
+                </div>
+                <div class="form-group">
+                  <label for="characterNumberInput">Initiative Modifier</label>
+                  <input type="number" class="form-control numberInput" id="characterNumberInput" value="0" placeholder="0">
+                </div>
+                <div class="form-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-light" id="characterIsPlayerInput">
+                    <input type="checkbox" checked autocomplete="off"> Is a Player
+                  </label>
+                </div>
+              </form> <!-- end character form -->
+            </div> <!-- end pills-character tab-pane -->
+            <div class="tab-pane fade" id="pills-action" role="tabpanel" aria-labelledby="pills-action-tab">
+              <!-- Action information -->
+              <form id="action-form">
+                <div class="form-group">
+                  <label for="actionNameInput">Name</label>
+                  <input class="form-control nameInput" id="actionNameInput" placeholder="Action name">
+                </div>
+                <div class="form-group">
+                  <label for="actionNumberInput">Initiative</label>
+                  <input type="number" class="form-control numberInput" id="actionNumberInput" value="20" placeholder="20">
+                </div>
+              </form> <!-- end action form -->
+            </div> <!-- end pills-action tab-pane -->
+          </div> <!-- end tab-content wrapper -->
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-info" onclick="addCharacterFromModal()">Add</button>
+          <button type="button" class="btn btn-info" onclick="addFromModal()">Add</button>
         </div>
       </div>
     </div>
@@ -100,8 +127,8 @@
   <script src="./JS/global.js"></script>
 
   <script>
+    // reset all modal fields to defaults upon hide
     $(".modal").on("hidden.bs.modal", resetModal);
-    populatePage();
   </script>
 </body>
 </html>
