@@ -17,6 +17,28 @@ table.table tr td:last-child {
   text-align: center;
 }
 
+label#characterIsPlayerInput {
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+}
+
+label#characterIsPlayerInput:hover {
+  background-color: #dae0e5;
+  border-color: #d3d9df;
+}
+
+.nav-pills a.nav-link.active,
+.nav-pills a.nav-link.active:hover,
+label#characterIsPlayerInput.active {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.nav-pills a.nav-link {
+  color: #6c757d;
+}
+
 /* remove spinner arrows for numeric inputs inside a table cell */
 td input[type=number]::-webkit-inner-spin-button,
 td input[type=number]::-webkit-outer-spin-button {
